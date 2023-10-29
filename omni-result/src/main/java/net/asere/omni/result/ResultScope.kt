@@ -10,12 +10,13 @@ import net.asere.omni.core.OmniHostDsl
 
 open class ResultScope<Result> : ExecutionScope() {
 
-    private val mutableResult = Channel<Result>(capacity = Channel.UNLIMITED)
+    private val mutableResult = Channel<Result>(capacity = 1)
     internal val result: Flow<Result> = mutableResult.receiveAsFlow()
     internal var errorBlock: (suspend (Throwable) -> Result)? = null
 
     internal suspend fun setResult(result: Result) {
         mutableResult.send(result)
+        mutableResult.close()
     }
 }
 

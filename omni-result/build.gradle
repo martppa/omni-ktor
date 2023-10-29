@@ -15,9 +15,9 @@ version = '1.6.0'
 
 ext {
     VERSION = version
-    ARTIFACT_ID = 'ktor'
-    POM_NAME = 'Omni-Ktor'
-    POM_DESCRIPTION = 'Omni Ktor adds a group of tools to deal with Ktor framework and Omni library'
+    ARTIFACT_ID = 'result'
+    POM_NAME = 'Omni-Result'
+    POM_DESCRIPTION = 'Omni Result allows you synchronous execution of intents'
 }
 
 apply from: "${rootProject.projectDir}/scripts/base_publish.gradle"
