@@ -1,18 +1,21 @@
 package net.asere.omni.result
 
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import net.asere.omni.core.ExecutionScope
 import net.asere.omni.core.OmniHostDsl
 
-class ResultScope<Result> : ExecutionScope() {
+open class ResultScope<Result> : ExecutionScope() {
 
-    private val mutableResult: MutableSharedFlow<Result> = MutableSharedFlow()
-    internal val result: SharedFlow<Result> = mutableResult
+    private val mutableResult = Channel<Result>(capacity = Channel.UNLIMITED)
+    internal val result: Flow<Result> = mutableResult.receiveAsFlow()
     internal var errorBlock: (suspend (Throwable) -> Result)? = null
 
     internal suspend fun setResult(result: Result) {
-        mutableResult.emit(result)
+        mutableResult.send(result)
     }
 }
 
