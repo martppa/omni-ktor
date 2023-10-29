@@ -1,7 +1,7 @@
 package net.asere.omni.ktor
 
-import net.asere.omni.result.ResultErrorMapper
+import net.asere.omni.result.ContentMapper
 
-interface ResponseMapper<T> : ResultErrorMapper<T, Response<T>> {
-    override fun resultOf(input: T): Response<T>
+interface ResponseMapper<Input, Output> : ContentMapper<Input, Response<Output>> {
+    override fun valueOf(input: Input): Response<Output>
 }

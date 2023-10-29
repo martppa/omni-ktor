@@ -24,6 +24,7 @@ apply from: "${rootProject.projectDir}/scripts/base_publish.gradle"
 
 dependencies {
     implementation project(path: ':omni-result')
+    implementation "net.asere.omni.mvi:core:1.6.0"
     implementation "io.ktor:ktor-server-core:2.1.3"
     implementation "io.ktor:ktor-server-netty:2.1.3"
     implementation "io.ktor:ktor-server-status-pages:2.1.3"
