@@ -95,6 +95,36 @@ fun overriddenError() = responseIntent {
     throw IllegalStateException()
 }
 ```
+
+## Calling intents
+To call intents you just have to use the top level extension function `respond` of Ktor's `ApplicationCall`:
+```kotlin
+fun start() = runBlocking {
+    embeddedServer(Netty, port = 3000) {
+        install(ContentNegotiation) {
+            json()
+        }
+        routing {
+            get("example/message") {
+                call.respond(controller::message)
+            }
+            get("example/error/internal") {
+                call.respond(controller::error500)
+            }
+            get("example/error/user") {
+                call.respond(controller::errorUserNotFound)
+            }
+            get("example/error/overridden") {
+                call.respond(controller::overriddenError)
+            }
+            get("example/no-content") {
+                call.respond(controller::noContent)
+            }
+        }
+    }.start(wait = true)
+}
+```
+
 # omni-result ![](https://img.shields.io/badge/mvi_version-1.6.1-004475)
 Omni Result is an [Omni-MVI](https://github.com/martppa/omni-mvi) core's feature which allows the suspend execution of an intent to obtain its result.
 
