@@ -6,7 +6,7 @@ import net.asere.omni.core.EmptyCoroutineExceptionHandler
 import kotlin.coroutines.EmptyCoroutineContext
 
 open class ConcreteConstrainedResultContainer<Result>(
-    override val exceptionMapper: ContentMapper<Throwable, Result>?,
+    override val exceptionMapper: ExceptionMapper<Result>?,
     coroutineScope: CoroutineScope,
     coroutineExceptionHandler: CoroutineExceptionHandler
 ) : ConcreteResultContainer(
@@ -15,11 +15,11 @@ open class ConcreteConstrainedResultContainer<Result>(
 ),  ConstrainedResultContainer<Result>
 
 fun <Result> constrainedResultContainer(
-    contentMapper: ContentMapper<Throwable, Result>? = null,
+    exceptionMapper: ExceptionMapper<Result>? = null,
     coroutineScope: CoroutineScope = CoroutineScope(EmptyCoroutineContext),
     coroutineExceptionHandler: CoroutineExceptionHandler = EmptyCoroutineExceptionHandler
 ) = ConcreteConstrainedResultContainer(
-    exceptionMapper = contentMapper,
+    exceptionMapper = exceptionMapper,
     coroutineScope = coroutineScope,
     coroutineExceptionHandler = coroutineExceptionHandler,
 )

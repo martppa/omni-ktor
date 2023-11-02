@@ -27,7 +27,7 @@ fun <Result> ConstrainedContainerHost<Result>.constrainedIntent(
             } else if (container.exceptionMapper != null) {
                 scope.setResult(container.exceptionMapper!!.valueOf(it))
             } else {
-                throw RuntimeException("Result error mapper not set! Make sure you set " +
+                throw RuntimeException("Exception mapper not set! Make sure you set " +
                         "the global scoped or intent scoped mapper")
             }
         }

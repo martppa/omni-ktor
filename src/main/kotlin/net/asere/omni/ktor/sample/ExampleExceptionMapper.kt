@@ -1,11 +1,11 @@
 package net.asere.omni.ktor.sample
 
+import net.asere.omni.ktor.ExceptionResponseMapper
 import net.asere.omni.ktor.Response
-import net.asere.omni.ktor.ResponseMapper
 import net.asere.omni.ktor.sample.model.errors.ApiError
 import net.asere.omni.ktor.sample.model.errors.UserNotFoundError
 
-class ExampleErrorMapper : ResponseMapper<Throwable, Any> {
+class ExampleExceptionMapper : ExceptionResponseMapper<Any> {
 
     override fun valueOf(input: Throwable): Response<Any> {
         return when (input) {

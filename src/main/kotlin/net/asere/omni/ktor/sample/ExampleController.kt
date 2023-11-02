@@ -1,22 +1,16 @@
 package net.asere.omni.ktor.sample
 
-import kotlinx.serialization.Serializable
-import net.asere.omni.ktor.Response
-import net.asere.omni.ktor.ResponseContainerHost
-import net.asere.omni.ktor.responseContainer
-import net.asere.omni.ktor.responseIntent
+import net.asere.omni.ktor.*
 import net.asere.omni.ktor.sample.model.Message
 import net.asere.omni.ktor.sample.model.errors.ApiError
 import net.asere.omni.ktor.sample.model.errors.UserNotFoundError
-import net.asere.omni.result.ContentMapper
-import net.asere.omni.result.lambda
 import net.asere.omni.result.onError
 
-class ExampleController : ResponseContainerHost<@Serializable Any> {
+class ExampleController : AnyResponseContainerHost {
 
     override val container = responseContainer(
         responseMapper = ExampleResponseMapper(),
-        exceptionMapper = ExampleErrorMapper(),
+        exceptionMapper = ExampleExceptionMapper(),
     )
 
     fun message() = responseIntent {
@@ -31,15 +25,13 @@ class ExampleController : ResponseContainerHost<@Serializable Any> {
         throw UserNotFoundError()
     }
 
-    private val localMapper = ContentMapper<Throwable, Response<Any>> { input ->
-        when (input) {
-            is IllegalStateException -> Response(code = 400, ApiError("bad_request"))
-            else -> Response(code = 500, body = ApiError("internal_server_error"))
-        }
-    }
-
     fun overriddenError() = responseIntent {
-        onError(localMapper.lambda)
+        onError {
+            when (it) {
+                is IllegalStateException -> Response(code = 400, ApiError("bad_request"))
+                else -> Response(code = 500, body = ApiError("internal_server_error"))
+            }
+        }
         throw IllegalStateException()
     }
 

@@ -23,7 +23,7 @@ fun <Result> ResultContainerHost.resultIntent(
             if (scope.errorBlock != null) {
                 scope.setResult(scope.errorBlock!!.invoke(it))
             } else {
-                throw RuntimeException("Result error mapper not set!")
+                throw RuntimeException("Exception mapper not set!")
             }
         }
     }

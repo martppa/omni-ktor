@@ -4,29 +4,22 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import net.asere.omni.core.EmptyCoroutineExceptionHandler
 import net.asere.omni.result.ConcreteConstrainedResultContainer
-import net.asere.omni.result.ContentMapper
 import kotlin.coroutines.EmptyCoroutineContext
 
-class ConcreteResponseContainer<Result> internal constructor(
-    override val responseMapper: ContentMapper<Result, Response<Result>>,
-    exceptionMapper: ContentMapper<Throwable, Response<Result>>?,
+class ConcreteResponseContainer<Input, Result> internal constructor(
+    override val responseMapper: ResponseMapper<Input, Result>,
+    exceptionMapper: ExceptionResponseMapper<Result>?,
     coroutineScope: CoroutineScope,
     coroutineExceptionHandler: CoroutineExceptionHandler
 ) : ConcreteConstrainedResultContainer<Response<Result>>(
     exceptionMapper = exceptionMapper,
     coroutineScope = coroutineScope,
     coroutineExceptionHandler = coroutineExceptionHandler,
-), ResponseContainer<Result>
+), ResponseContainer<Input, Result>
 
-internal class DefaultResponse<Result> : ContentMapper<Result, Response<Result>> {
-    override fun valueOf(input: Result): Response<Result> {
-        return Response(code = 200, input)
-    }
-}
-
-fun <Result> responseContainer(
-    responseMapper: ContentMapper<Result, Response<Result>> = DefaultResponse(),
-    exceptionMapper: ContentMapper<Throwable, Response<Result>>? = null,
+fun <Input, Result> responseContainer(
+    responseMapper: ResponseMapper<Input, Result>,
+    exceptionMapper: ExceptionResponseMapper<Result>? = null,
     coroutineScope: CoroutineScope = CoroutineScope(EmptyCoroutineContext),
     coroutineExceptionHandler: CoroutineExceptionHandler = EmptyCoroutineExceptionHandler
 ) = ConcreteResponseContainer(
