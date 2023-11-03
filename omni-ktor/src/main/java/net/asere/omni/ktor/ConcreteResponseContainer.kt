@@ -17,7 +17,7 @@ class ConcreteResponseContainer<Input, Result> internal constructor(
     coroutineExceptionHandler = coroutineExceptionHandler,
 ), ResponseContainer<Input, Result>
 
-fun <Input, Result> responseContainer(
+fun <Input, Result> ResponseContainerHost<Input, Result>.responseContainer(
     responseMapper: ResponseMapper<Input, Result>,
     exceptionMapper: ExceptionResponseMapper<Result>? = null,
     coroutineScope: CoroutineScope = CoroutineScope(EmptyCoroutineContext),

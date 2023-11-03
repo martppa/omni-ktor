@@ -14,7 +14,7 @@ open class ConcreteConstrainedResultContainer<Result>(
     coroutineExceptionHandler = coroutineExceptionHandler,
 ),  ConstrainedResultContainer<Result>
 
-fun <Result> constrainedResultContainer(
+fun <Result> ConstrainedContainerHost<Result>.constrainedResultContainer(
     exceptionMapper: ExceptionMapper<Result>? = null,
     coroutineScope: CoroutineScope = CoroutineScope(EmptyCoroutineContext),
     coroutineExceptionHandler: CoroutineExceptionHandler = EmptyCoroutineExceptionHandler

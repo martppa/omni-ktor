@@ -14,7 +14,7 @@ open class ConcreteResultContainer internal constructor(
     coroutineExceptionHandler = coroutineExceptionHandler,
 ),  ResultContainer
 
-fun resultContainer(
+fun ResultContainerHost.resultContainer(
     coroutineScope: CoroutineScope = CoroutineScope(EmptyCoroutineContext),
     coroutineExceptionHandler: CoroutineExceptionHandler = EmptyCoroutineExceptionHandler
 ) = ConcreteResultContainer(

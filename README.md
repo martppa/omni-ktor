@@ -1,4 +1,4 @@
-# omni-ktor ![](https://img.shields.io/badge/mvi_version-1.6.1-004475)
+# omni-ktor ![](https://img.shields.io/badge/mvi_version-1.6.2-004475)
 Omni Ktor is an [Omni-MVI](https://github.com/martppa/omni-mvi) core's feature which allows developers execute code and communicate its result back to Ktor. It follows the same principle of intents execution via containers, just like [Omni-MVI](https://github.com/martppa/omni-mvi)  
 
 ## Installation
@@ -125,7 +125,7 @@ fun start() = runBlocking {
 }
 ```
 
-# omni-result ![](https://img.shields.io/badge/mvi_version-1.6.1-004475)
+# omni-result ![](https://img.shields.io/badge/mvi_version-1.6.2-004475)
 Omni Result is an [Omni-MVI](https://github.com/martppa/omni-mvi) core's feature which allows the suspend execution of an intent to obtain its result.
 
 ## Installation
