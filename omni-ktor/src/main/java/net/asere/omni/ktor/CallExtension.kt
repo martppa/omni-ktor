@@ -6,12 +6,12 @@ import io.ktor.server.response.*
 import net.asere.omni.result.ResultIntent
 
 suspend inline fun <reified Result : Any> ApplicationCall.respond(block: () -> ResultIntent<Response<Result>>) {
-    val intent = block()
-    val response = intent.awaitResult()
-    respond(
-        status = HttpStatusCode.fromValue(
-            value = response.code
-        ),
-        message = response.body
-    )
+    respond(block().awaitResult())
 }
+
+suspend inline fun <reified Result : Any> ApplicationCall.respond(response: Response<Result>) = respond(
+    status = HttpStatusCode.fromValue(
+        value = response.code
+    ),
+    message = response.body
+)
