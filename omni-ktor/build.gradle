@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 
-version = '1.7.0'
+version = '1.8.1'
 
 ext {
     VERSION = version
@@ -25,13 +25,13 @@ apply from: "${rootProject.projectDir}/scripts/base_publish.gradle"
 dependencies {
     implementation project(path: ':omni-result')
     implementation "net.asere.omni.mvi:core:1.7.0"
-    implementation "io.ktor:ktor-server-core:2.1.3"
-    implementation "io.ktor:ktor-server-netty:2.1.3"
-    implementation "io.ktor:ktor-server-status-pages:2.1.3"
-    implementation "io.ktor:ktor-server-default-headers:2.1.3"
-    implementation "io.ktor:ktor-server-content-negotiation:2.1.3"
-    implementation "io.ktor:ktor-serialization-kotlinx-json:2.1.3"
-    implementation "io.ktor:ktor-server-request-validation:2.1.3"
+    implementation "io.ktor:ktor-server-core:3.0.2"
+    implementation "io.ktor:ktor-server-netty:3.0.2"
+    implementation "io.ktor:ktor-server-status-pages:3.0.2"
+    implementation "io.ktor:ktor-server-default-headers:3.0.2"
+    implementation "io.ktor:ktor-server-content-negotiation:3.0.2"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:3.0.2"
+    implementation "io.ktor:ktor-server-request-validation:3.0.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     testImplementation platform('org.junit:junit-bom:5.9.1')

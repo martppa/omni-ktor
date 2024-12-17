@@ -1,5 +1,6 @@
 package net.asere.omni.ktor.sample
 
+import kotlinx.coroutines.CoroutineExceptionHandler
 import net.asere.omni.ktor.*
 import net.asere.omni.ktor.sample.model.Message
 import net.asere.omni.ktor.sample.model.errors.ApiError
@@ -9,6 +10,9 @@ import net.asere.omni.result.onError
 class ExampleController : AnyResponseContainerHost {
 
     override val container = responseContainer(
+        coroutineExceptionHandler = CoroutineExceptionHandler { _, error ->
+            print(error)
+        },
         responseMapper = ExampleResponseMapper(),
         exceptionMapper = ExampleExceptionMapper(),
     )
