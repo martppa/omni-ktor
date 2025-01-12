@@ -17,9 +17,8 @@ fun <Input, Result> ResponseContainerHost<Input, Result>.responseIntent(
     return constrainedIntent(
         context = context,
         start = start,
-        block = {
-            val result = block()
-            container.responseMapper.valueOf(result)
-        }
-    )
+    ) {
+        val result = block()
+        container.responseMapper.valueOf(result)
+    }
 }

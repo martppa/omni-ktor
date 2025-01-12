@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '2.0.0'
     id 'maven-publish'
     id 'signing'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.0.0'
 }
 
 group = 'net.asere.omni.ktor'
@@ -11,7 +12,7 @@ repositories {
     mavenCentral()
 }
 
-version = '1.8.1'
+version = '1.8.3'
 
 ext {
     VERSION = version

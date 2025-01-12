@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 
-version = '1.8.1'
+version = '1.8.3'
 
 ext {
     VERSION = version
